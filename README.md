@@ -44,6 +44,7 @@ Time Machine treats templates like code.
 | Catch mistakes before they deploy                 | `agentia timemachine lint`                          |
 | Check everything at a glance                      | `agentia timemachine status`                        |
 | Confirm what Copado really uses (fields, filters) | `agentia timemachine verify`                        |
+| See every template's timeline in the browser      | `agentia timemachine report --open`                 |
 | Let AI agents do all of the above safely          | Agent Skill + `agentia timemachine mcp`             |
 
 Every command supports `--json` with Agentia's `{result, status}` envelope and documented exit codes.
@@ -88,6 +89,13 @@ agentia timemachine status
 ```
 
 Then change the template (in Copado, or with `timemachine edit`) and run `agentia timemachine diff "My Account Template"`.
+
+## The timeline page
+
+`agentia timemachine report --open` writes one self-contained HTML page (no network needed) with each template's
+version timeline: who changed it, when, why and what changed, with a copyable restore command per version. It also
+shows whether Copado changed since the last snapshot, what Copado will deploy (`verify`), and lint findings. It stays
+inside the workspace and is git-ignored, because it contains your template configuration.
 
 ## Safe edit: nobody's work is overwritten
 
@@ -206,7 +214,7 @@ Each command's syntax, JSON shape and error codes: [docs/agentia-commands.md](do
   for records, it queried a field that was deselected in the UI but selected in v2. So Time Machine versions the copy
   that drives data selection. No public Agentia command exposes the UI's copy, so Time Machine **cannot detect
   UI-only edits**. Make template changes through Time Machine (or the CLI), and run `agentia timemachine verify`
-  to see exactly which fields, filters and limits Copado will use. We reported this to Copado with reproduction steps.
+  to see exactly which fields, filters and limits Copado will use. The evidence and reproduction steps are in [docs/decisions.md](docs/decisions.md).
 - **Saves without a filter or record limit fail.** Copado drops empty lists and nulls when saving, then rejects the
   document. Time Machine detects this before writing and tells you which field to fill in.
 - **Legacy templates** must be converted to v2 once (`convert-old`, a write you run yourself).

@@ -49,4 +49,8 @@ step "6. Review, lint, and check what Copado's data engine really uses"
 tm lint "TM Demo - Accounts New"
 tm verify "TM Demo - Accounts New"
 
+step "7. The timeline page"
+tm report
+echo -e "  Open it: open \"$DEMO/workspace/.timemachine/report.html\""
+
 echo -e "\nDone. Workspace: $DEMO/workspace (delete it when finished)."
