@@ -1,0 +1,19 @@
+node_modules/
+dist/
+fixtures/raw/
+.env
+*.log
+.agentia/config.user.json
+.agentia/idex
+
+# Agentia local state and generated Copado skills (regenerate with `agentia setup skills create`)
+.agentia/
+.agents/
+.cursor/
+AGENTS.md
+oclif.manifest.json
+*.tsbuildinfo
+.sf/
+
+# personal notes, never published
+local/

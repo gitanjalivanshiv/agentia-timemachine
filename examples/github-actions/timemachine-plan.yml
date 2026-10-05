@@ -1,0 +1,63 @@
+# Time Machine: comment the template plan on pull requests.
+#
+# Copy into the PRIVATE repository that holds your .timemachine/ workspace (not the plugin repo):
+#   .github/workflows/timemachine-plan.yml
+#
+# ⚠ Needs YOUR Copado CI credentials as repository secrets:
+#   AGENTIA_CICD_API_KEY   Copado API key (Account Summary → API Key)
+#   AGENTIA_CICD_BASE_URL  e.g. https://na.api.copado.com  (see `agentia auth get --cicd`)
+# The workflow only READS from Copado. It never writes to the org.
+
+name: timemachine-plan
+
+on:
+  pull_request:
+    paths: ['.timemachine/**']
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: timemachine-plan-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    env:
+      AGENTIA_CICD_API_KEY: ${{ secrets.AGENTIA_CICD_API_KEY }}
+      AGENTIA_CICD_BASE_URL: ${{ secrets.AGENTIA_CICD_BASE_URL }}
+      # Where to install the plugin from: an npm name, or a git URL of the plugin repository.
+      TIMEMACHINE_PLUGIN: agentia-plugin-timemachine
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # the plan needs history to find each template's last snapshot
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Agentia CLI and Time Machine
+        run: |
+          npm install -g @copado/agentia-cli@beta
+          agentia plugins install "$TIMEMACHINE_PLUGIN"
+          agentia --version
+
+      - name: Plan
+        run: agentia timemachine plan --ref HEAD --format md --output plan.md
+
+      - name: Comment on the pull request
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs')
+            const body = fs.readFileSync('plan.md', 'utf8')
+            const marker = '<!-- timemachine-plan -->'
+            const {owner, repo} = context.repo
+            const issue_number = context.issue.number
+            const comments = await github.paginate(github.rest.issues.listComments, {owner, repo, issue_number})
+            const previous = comments.find((c) => c.body && c.body.startsWith(marker))
+            if (previous) await github.rest.issues.updateComment({owner, repo, comment_id: previous.id, body})
+            else await github.rest.issues.createComment({owner, repo, issue_number, body})

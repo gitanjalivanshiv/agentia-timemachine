@@ -1,0 +1,17 @@
+{
+  "exitCode": 1,
+  "stdout": {
+    "error": {
+      "categories": [
+        "MDW-003"
+      ],
+      "code": "VALIDATION_EXCEPTION",
+      "requestMethod": "PUT",
+      "requestUrl": "/release/data-templates/a0U000000000004AAA/detail via https://na.api.copado.com/json/v1/webhook/cicd-api?api_key=%3Cmasked%3E",
+      "statusCode": 422,
+      "name": "CicdGatewayError",
+      "message": "[details.0.limit] (missing): Field required. Request: PUT /release/data-templates/a0U000000000004AAA/detail via https://na.api.copado.com/json/v1/webhook/cicd-api?api_key=%3Cmasked%3E"
+    },
+    "transactionId": "00000000-0000-7000-8000-000000000013"
+  }
+}

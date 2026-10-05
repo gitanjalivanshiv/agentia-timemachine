@@ -1,0 +1,62 @@
+# Time Machine: apply merged template changes to Copado.
+#
+# Copy into the PRIVATE repository that holds your .timemachine/ workspace:
+#   .github/workflows/timemachine-apply.yml
+#
+# ⚠ This workflow WRITES to your Copado org. It needs YOUR CI credentials as repository secrets:
+#   AGENTIA_CICD_API_KEY, AGENTIA_CICD_BASE_URL
+# Point it at a sandbox first. Every template is saved through the same safe path as `restore`:
+# it refuses to overwrite changes made in Copado after the last snapshot, verifies each save, and
+# pushes the before/after snapshot commits back so `timemachine history` stays complete.
+
+name: timemachine-apply
+
+on:
+  push:
+    branches: [main]
+    paths: ['.timemachine/templates/**']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: timemachine-apply # never two applies at once
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    environment: copado-sandbox # optional: add required reviewers to this GitHub environment
+    env:
+      AGENTIA_CICD_API_KEY: ${{ secrets.AGENTIA_CICD_API_KEY }}
+      AGENTIA_CICD_BASE_URL: ${{ secrets.AGENTIA_CICD_BASE_URL }}
+      TIMEMACHINE_PLUGIN: agentia-plugin-timemachine
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Agentia CLI and Time Machine
+        run: |
+          npm install -g @copado/agentia-cli@beta
+          agentia plugins install "$TIMEMACHINE_PLUGIN"
+
+      - name: Identify snapshot commits
+        run: |
+          git config user.name "timemachine-bot"
+          git config user.email "timemachine-bot@users.noreply.github.com"
+
+      - name: Plan
+        run: agentia timemachine plan --ref HEAD
+
+      - name: Apply
+        run: agentia timemachine apply --ref HEAD --yes
+
+      - name: Push snapshot commits
+        if: always()
+        run: git push origin HEAD:${{ github.ref_name }}

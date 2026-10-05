@@ -1,0 +1,83 @@
+{
+  "name": "agentia-plugin-timemachine",
+  "description": "Template versioning for Copado Release Data Templates: snapshot, diff, safe edit and restore",
+  "version": "0.1.0",
+  "author": "Agentia Time Machine contributors",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": "./dist/index.js",
+  "license": "MIT",
+  "keywords": [
+    "oclif-plugin",
+    "agentia",
+    "copado",
+    "data-templates",
+    "version-control",
+    "mcp",
+    "agent-skill"
+  ],
+  "files": [
+    "/bin",
+    "/dist",
+    "/oclif.manifest.json",
+    "/skills"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.0",
+    "@oclif/core": "^4",
+    "simple-git": "^4.0.2",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22.20.5",
+    "eslint": "^10.12.0",
+    "eslint-config-prettier": "^10.1.8",
+    "oclif": "^4",
+    "prettier": "^3.9.9",
+    "shx": "^0.3.3",
+    "typescript": "^5",
+    "typescript-eslint": "^8.71.0",
+    "vitest": "^5.0.3"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "oclif": {
+    "bin": "agentia",
+    "dirname": "agentia-cli",
+    "commands": "./dist/commands",
+    "topics": {
+      "timemachine": {
+        "description": "Template versioning for Copado Release Data Templates"
+      },
+      "timemachine:skill": {
+        "description": "Manage the Time Machine Agent Skill for coding agents"
+      }
+    },
+    "topicSeparator": " "
+  },
+  "scripts": {
+    "build": "shx rm -rf dist && tsc -b",
+    "clean": "shx rm -f oclif.manifest.json",
+    "prepack": "npm run build && oclif manifest",
+    "postpack": "npm run clean",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint . && prettier --check .",
+    "format": "prettier --write .",
+    "typecheck": "tsc -p tsconfig.test.json",
+    "demo:offline": "./examples/demo/try-offline.sh",
+    "demo:record": "node examples/demo/record.mjs && agg --theme monokai --font-size 15 --idle-time-limit 2 --last-frame-duration 4 docs/media/timemachine.cast docs/media/timemachine.gif",
+    "licenses": "node scripts/licenses.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gitanjalivanshiv/agentia-timemachine.git"
+  },
+  "homepage": "https://github.com/gitanjalivanshiv/agentia-timemachine#readme",
+  "bugs": {
+    "url": "https://github.com/gitanjalivanshiv/agentia-timemachine/issues"
+  }
+}

@@ -1,0 +1,9 @@
+dist/
+node_modules/
+fixtures/
+.agents/
+.agentia/
+AGENTS.md
+CLAUDE.md
+package-lock.json
+docs/media/

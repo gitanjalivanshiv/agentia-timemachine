@@ -1,0 +1,383 @@
+{
+  "exitCode": 0,
+  "stdout": {
+    "result": {
+      "version": 2,
+      "templateName": "TM Demo - Accounts New",
+      "templateApiName": "tmdemoaccountsnew",
+      "templateId": "a0U000000000004AAA",
+      "mainObject": {
+        "apiName": "Account",
+        "label": "Account"
+      },
+      "application": "",
+      "applicationModule": "",
+      "details": [
+        {
+          "templateId": "a0U000000000004AAA",
+          "templateName": "TM Demo - Accounts New",
+          "apiName": "tmdemoaccountsnew",
+          "table": "Account",
+          "autoUpdate": "manual",
+          "batchSize": 200,
+          "matchOwner": false,
+          "matchRecordType": false,
+          "limit": 50000,
+          "attachmentOption": "NONE",
+          "fileOption": "NONE",
+          "queryTemplate": "1",
+          "filters": [
+            "Type = 'Customer'"
+          ],
+          "rawFilters": [
+            {
+              "order": 1,
+              "operator": "e",
+              "isValid": true,
+              "input": "Customer",
+              "finalValue": "Type = 'Customer'",
+              "fieldType": "PICKLIST",
+              "fieldName": "Account Type-Type",
+              "fieldLabel": "Account Type"
+            }
+          ],
+          "columns": [
+            {
+              "name": "Id",
+              "type": "id",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": true,
+              "externalId": false
+            },
+            {
+              "name": "Name",
+              "type": "string",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": true,
+              "externalId": false
+            },
+            {
+              "name": "Type",
+              "type": "picklist",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": true,
+              "externalId": false
+            },
+            {
+              "name": "ParentId",
+              "type": "reference",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": false,
+              "externalId": false
+            },
+            {
+              "name": "BillingStreet",
+              "type": "textarea",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": false,
+              "externalId": false
+            },
+            {
+              "name": "BillingCity",
+              "type": "string",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": false,
+              "externalId": false
+            },
+            {
+              "name": "BillingState",
+              "type": "string",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": false,
+              "externalId": false
+            },
+            {
+              "name": "BillingPostalCode",
+              "type": "string",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": false,
+              "externalId": false
+            },
+            {
+              "name": "BillingCountry",
+              "type": "string",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": true,
+              "externalId": false
+            },
+            {
+              "name": "BillingLatitude",
+              "type": "double",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": false,
+              "externalId": false
+            },
+            {
+              "name": "BillingLongitude",
+              "type": "double",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": false,
+              "externalId": false
+            },
+            {
+              "name": "BillingGeocodeAccuracy",
+              "type": "picklist",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": false,
+              "externalId": false
+            },
+            {
+              "name": "ShippingStreet",
+              "type": "textarea",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": false,
+              "externalId": false
+            },
+            {
+              "name": "ShippingCity",
+              "type": "string",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": false,
+              "externalId": false
+            },
+            {
+              "name": "ShippingState",
+              "type": "string",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": false,
+              "externalId": false
+            },
+            {
+              "name": "ShippingPostalCode",
+              "type": "string",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": false,
+              "externalId": false
+            },
+            {
+              "name": "ShippingCountry",
+              "type": "string",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": false,
+              "externalId": false
+            },
+            {
+              "name": "ShippingLatitude",
+              "type": "double",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": false,
+              "externalId": false
+            },
+            {
+              "name": "ShippingLongitude",
+              "type": "double",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": false,
+              "externalId": false
+            },
+            {
+              "name": "ShippingGeocodeAccuracy",
+              "type": "picklist",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": false,
+              "externalId": false
+            },
+            {
+              "name": "Phone",
+              "type": "phone",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": true,
+              "externalId": false
+            },
+            {
+              "name": "Fax",
+              "type": "phone",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": false,
+              "externalId": false
+            },
+            {
+              "name": "Website",
+              "type": "url",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": false,
+              "externalId": false
+            },
+            {
+              "name": "Industry",
+              "type": "picklist",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": true,
+              "externalId": false
+            },
+            {
+              "name": "AnnualRevenue",
+              "type": "currency",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": true,
+              "externalId": false
+            },
+            {
+              "name": "NumberOfEmployees",
+              "type": "int",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": false,
+              "externalId": false
+            },
+            {
+              "name": "Description",
+              "type": "textarea",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": false,
+              "externalId": false
+            },
+            {
+              "name": "IsCustomerPortal",
+              "type": "boolean",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": false,
+              "externalId": false
+            },
+            {
+              "name": "Jigsaw",
+              "type": "string",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": false,
+              "externalId": false
+            },
+            {
+              "name": "AccountSource",
+              "type": "picklist",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": false,
+              "externalId": false
+            },
+            {
+              "name": "SicDesc",
+              "type": "string",
+              "anonymizerType": {
+                "type": "None"
+              },
+              "lookUpType": "NONE",
+              "isSelected": false,
+              "externalId": false
+            }
+          ],
+          "externalIdField": "Id",
+          "externalIdGeneration": {
+            "generateExternalId": false,
+            "needsHashing": false,
+            "fields": [],
+            "recordMatchingFormulaId": null,
+            "recordMatchingFormulaName": null
+          },
+          "virtualIdGeneration": {
+            "generateExternalId": false,
+            "needsHashing": false,
+            "fields": [],
+            "recordMatchingFormulaId": null,
+            "recordMatchingFormulaName": null
+          },
+          "parentTemplates": [],
+          "childTemplates": [],
+          "continueOnError": "Continue deployment until blocker issue",
+          "virtualExternalIdEnabled": false
+        }
+      ],
+      "status": "Inactive",
+      "schemaCredential": "a11000000000002AAA"
+    },
+    "status": 0,
+    "transactionId": "00000000-0000-7000-8000-000000000003"
+  }
+}

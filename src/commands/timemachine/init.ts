@@ -1,0 +1,94 @@
+import fs from 'node:fs'
+import path from 'node:path'
+
+import {Flags} from '@oclif/core'
+
+import {matchTemplate} from '../../agentia/client.js'
+import {TimemachineCommand} from '../../base-command.js'
+import {installSkill, TARGETS, updateAgentsMd, type SkillTarget} from '../../core/skill.js'
+import {track} from '../../core/snapshot.js'
+import {confirm, isInteractive} from '../../render/prompt.js'
+import {style} from '../../render/style.js'
+import type {TrackedTemplate} from '../../store/config.js'
+import {Store, TM_DIR} from '../../store/store.js'
+
+export interface InitResult {
+  root: string
+  created: boolean
+  gitInitialised: boolean
+  tracked: TrackedTemplate[]
+  commit?: string
+  /** Folders the Agent Skill was installed into. */
+  skills: string[]
+}
+
+export default class TimemachineInit extends TimemachineCommand {
+  static override summary = 'Create a timemachine workspace (.timemachine/) for template snapshots.'
+  static override description = `Creates .timemachine/config.json in the current folder, initialises git if needed and commits the config.
+Use --track to name the data templates timemachine should version. Only tracked templates are touched by default.
+
+Snapshots contain your org's template configuration (including record Ids), so keep the workspace in a private repository.`
+
+  static override examples = ['<%= config.bin %> <%= command.id %>', '<%= config.bin %> <%= command.id %> --track "TM Demo - Accounts New"']
+
+  static override flags = {
+    track: Flags.string({description: 'Template name or Id to track (repeatable).', multiple: true}),
+    skill: Flags.string({
+      description: 'Also install the Agent Skill for this coding agent (repeatable). Interactive runs ask.',
+      options: Object.keys(TARGETS),
+      multiple: true,
+    }),
+  }
+
+  public async run(): Promise<InitResult> {
+    const {flags} = await this.parse(TimemachineInit)
+    const root = process.cwd()
+    const store = new Store(root)
+    const created = !store.exists()
+
+    const gitInitialised = await store.ensureRepo()
+    await store.gitUser() // fail early with a clear hint if git has no identity
+
+    const config = store.loadConfig()
+    const tracked: TrackedTemplate[] = []
+    if (flags.track && flags.track.length > 0) {
+      const client = this.createClient(root)
+      await client.assertSupportedVersion()
+      const all = await client.listTemplates()
+      for (const ref of flags.track) tracked.push(track(config, matchTemplate(all, ref)))
+    }
+
+    store.saveConfig(config)
+    const gitignore = path.join(store.dir, '.gitignore')
+    if (!fs.existsSync(gitignore)) fs.writeFileSync(gitignore, '# in-progress safe edits\n.lock/\n')
+
+    const paths = [store.rel('config.json'), store.rel('.gitignore')]
+    let commit: string | undefined
+    if (await store.hasChanges(paths)) {
+      const what = tracked.length > 0 ? `track ${tracked.map((t) => t.name).join(', ')}` : 'initialise workspace'
+      commit = await store.commit(paths, `tm: init (${what})`)
+    }
+
+    if (!this.jsonEnabled()) {
+      this.log(
+        `${style.green('✔')} ${created ? 'Created' : 'Updated'} ${path.join(root, TM_DIR)}${gitInitialised ? ' (new git repository)' : ''}`,
+      )
+      for (const t of tracked) this.log(`  tracking ${style.bold(t.name)} → ${TM_DIR}/templates/${t.slug}/`)
+      if (config.templates.length === 0) this.log(`\nNext: ${style.cyan('agentia timemachine init --track "<template name>"')}`)
+      else this.log(`\nNext: ${style.cyan('agentia timemachine snapshot --all')}`)
+      this.log(style.dim('Keep this workspace private: snapshots contain your org configuration.'))
+    }
+    let skillTargets = (flags.skill ?? []) as SkillTarget[]
+    if (skillTargets.length === 0 && !this.jsonEnabled() && isInteractive()) {
+      if (await confirm('\nInstall the Time Machine Agent Skill so coding agents edit templates safely (.agents/skills)?'))
+        skillTargets = ['agents']
+    }
+    const skills = skillTargets.map((t) => installSkill(root, t))
+    if (skillTargets.length > 0) updateAgentsMd(root, skillTargets)
+    if (!this.jsonEnabled()) {
+      for (const i of skills) this.log(`${style.green('✔')} Agent Skill installed: ${i.dir}`)
+      if (skills.length === 0) this.log(style.dim('Agent Skill: agentia timemachine skill install --target agents|claude|cursor'))
+    }
+    return {root, created, gitInitialised, tracked, commit, skills: skills.map((s) => s.dir)}
+  }
+}

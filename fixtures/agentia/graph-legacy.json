@@ -1,0 +1,143 @@
+{
+  "exitCode": 0,
+  "stdout": {
+    "result": {
+      "a0U000000000004AAA": {
+        "templateId": "a0U000000000004AAA",
+        "templateName": "TM Demo - Accounts New",
+        "apiName": "",
+        "table": "Account",
+        "autoUpdate": "manual",
+        "batchSize": 200,
+        "matchOwner": false,
+        "matchRecordType": false,
+        "limit": null,
+        "attachmentOption": "NONE",
+        "fileOption": "NONE",
+        "queryTemplate": "1",
+        "filters": [
+          "Type = 'Customer'"
+        ],
+        "rawFilters": [
+          {
+            "order": 1,
+            "operatorSet": null,
+            "operator": "e",
+            "numberInput": null,
+            "isValid": true,
+            "input": "Customer",
+            "finalValue": "Type = 'Customer'",
+            "fieldType": "PICKLIST",
+            "fieldName": "Account Type-Type",
+            "fieldLabel": "Account Type",
+            "dateTimeInput": null,
+            "dateInput": null
+          }
+        ],
+        "columns": [
+          {
+            "name": "Id",
+            "type": "id",
+            "anonymizerType": {
+              "type": "None"
+            },
+            "lookUpType": "NONE",
+            "isSelected": true,
+            "externalId": false
+          },
+          {
+            "name": "Name",
+            "type": "string",
+            "anonymizerType": {
+              "type": "None"
+            },
+            "lookUpType": "NONE",
+            "isSelected": true,
+            "externalId": false
+          },
+          {
+            "name": "Type",
+            "type": "picklist",
+            "anonymizerType": {
+              "type": "None"
+            },
+            "lookUpType": "NONE",
+            "isSelected": true,
+            "externalId": false
+          },
+          {
+            "name": "BillingCountry",
+            "type": "string",
+            "anonymizerType": {
+              "type": "None"
+            },
+            "lookUpType": "NONE",
+            "isSelected": true,
+            "externalId": false
+          },
+          {
+            "name": "Phone",
+            "type": "phone",
+            "anonymizerType": {
+              "type": "None"
+            },
+            "lookUpType": "NONE",
+            "isSelected": true,
+            "externalId": false
+          },
+          {
+            "name": "Fax",
+            "type": "phone",
+            "anonymizerType": {
+              "type": "None"
+            },
+            "lookUpType": "NONE",
+            "isSelected": true,
+            "externalId": false
+          },
+          {
+            "name": "Industry",
+            "type": "picklist",
+            "anonymizerType": {
+              "type": "None"
+            },
+            "lookUpType": "NONE",
+            "isSelected": true,
+            "externalId": false
+          },
+          {
+            "name": "AnnualRevenue",
+            "type": "currency",
+            "anonymizerType": {
+              "type": "None"
+            },
+            "lookUpType": "NONE",
+            "isSelected": true,
+            "externalId": false
+          }
+        ],
+        "externalIdField": "Id",
+        "externalIdGeneration": {
+          "generateExternalId": false,
+          "needsHashing": false,
+          "fields": [],
+          "recordMatchingFormulaId": null,
+          "recordMatchingFormulaName": null
+        },
+        "virtualIdGeneration": {
+          "generateExternalId": false,
+          "needsHashing": false,
+          "fields": [],
+          "recordMatchingFormulaId": null,
+          "recordMatchingFormulaName": null
+        },
+        "parentTemplates": [],
+        "childTemplates": [],
+        "continueOnError": "Continue deployment until blocker issue",
+        "virtualExternalIdEnabled": false
+      }
+    },
+    "status": 0,
+    "transactionId": "00000000-0000-7000-8000-000000000006"
+  }
+}

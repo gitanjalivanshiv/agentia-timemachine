@@ -1,0 +1,10 @@
+{
+  "description": "A UI-built template before `convert-old`: get-detail fails with DAT-004, get works.",
+  "responses": {
+    "--version": {"stdout": "@copado/agentia-cli/1.0.0-beta.2 darwin-arm64 node-v24.18.0\n"},
+    "cicd data template list": "template-list.json",
+    "cicd data template get-detail a0U000000000004AAA": "error-dat-004.json",
+    "cicd data template get a0U000000000004AAA": "graph-legacy.json",
+    "cicd data template get-detail a0U000000000001AAA": "detail-v2-no-filter.json"
+  }
+}

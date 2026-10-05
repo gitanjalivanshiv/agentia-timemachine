@@ -1,0 +1,9 @@
+{
+  "description": "Two demo templates: one ready to version, one blocked because it has no main object filter.",
+  "responses": {
+    "--version": {"stdout": "@copado/agentia-cli/1.0.0-beta.2 darwin-arm64 node-v24.18.0\n"},
+    "cicd data template list": "template-list.json",
+    "cicd data template get-detail a0U000000000004AAA": "detail-v2-ready.json",
+    "cicd data template get-detail a0U000000000001AAA": "detail-v2-no-filter.json"
+  }
+}

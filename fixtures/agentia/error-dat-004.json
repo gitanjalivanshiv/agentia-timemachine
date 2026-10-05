@@ -1,0 +1,17 @@
+{
+  "exitCode": 1,
+  "stdout": {
+    "error": {
+      "categories": [
+        "DAT-004"
+      ],
+      "code": "HANDLED_EXCEPTION",
+      "requestMethod": "GET",
+      "requestUrl": "/release/data-templates/a0U000000000004AAA/detail via https://na.api.copado.com/json/v1/webhook/cicd-api?api_key=%3Cmasked%3E",
+      "statusCode": 404,
+      "name": "CicdGatewayError",
+      "message": "Failed to download template attachment: a0U000000000004AAA. Request: GET /release/data-templates/a0U000000000004AAA/detail via https://na.api.copado.com/json/v1/webhook/cicd-api?api_key=%3Cmasked%3E"
+    },
+    "transactionId": "00000000-0000-7000-8000-000000000010"
+  }
+}

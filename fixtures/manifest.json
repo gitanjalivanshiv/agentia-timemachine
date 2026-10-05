@@ -1,0 +1,16 @@
+[
+  {"from": "fixtures/raw/ui/rt-list-2.json", "to": "fixtures/agentia/template-list.json"},
+  {"from": "fixtures/raw/ui/detail-3-after-restore.json", "to": "fixtures/agentia/detail-v2-ready.json"},
+  {"from": "fixtures/raw/ui/detail-2-after-fax.json", "to": "fixtures/agentia/detail-v2-fax-deselected.json"},
+  {"from": "fixtures/raw/ui/detail-pre-limit.json", "to": "fixtures/agentia/detail-v2-limit-null.json"},
+  {"from": "fixtures/raw/roundtrip/detail-0-orig.json", "to": "fixtures/agentia/detail-v2-no-filter.json"},
+  {"from": "fixtures/raw/ui/get.json", "to": "fixtures/agentia/graph-legacy.json"},
+  {"from": "fixtures/raw/ui/convert-old.json", "to": "fixtures/agentia/convert-old.json"},
+  {"from": "fixtures/raw/ui/save-2-deselect-fax.json", "to": "fixtures/agentia/save-ok.json"},
+  {"from": "fixtures/raw/ui/filter-list.json", "to": "fixtures/agentia/filter-list-empty.json"},
+  {"from": "fixtures/raw/ui/detail.json", "to": "fixtures/agentia/error-dat-004.json"},
+  {"from": "fixtures/raw/sobject-account-dev2-login-error.json", "to": "fixtures/agentia/error-lgn-001.json"},
+  {"from": "fixtures/raw/roundtrip/save-1-identity.json", "to": "fixtures/agentia/error-mdw-003-filters.json"},
+  {"from": "fixtures/raw/handmade/error-mdw-003-limit.json", "to": "fixtures/agentia/error-mdw-003-limit.json"},
+  {"from": "fixtures/raw/handmade/error-auth-missing.json", "to": "fixtures/agentia/error-auth-missing.json"}
+]

@@ -1,0 +1,10 @@
+{
+  "exitCode": 1,
+  "stdout": {
+    "error": {
+      "message": "CICD API key is not configured. Run `agentia auth set --cicd <key> [--region <region> | --custom-url <url>]` or set AGENTIA_CICD_API_KEY.",
+      "name": "Error"
+    },
+    "transactionId": "00000000-0000-7000-8000-000000000014"
+  }
+}

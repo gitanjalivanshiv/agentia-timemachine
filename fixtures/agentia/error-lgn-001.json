@@ -1,0 +1,17 @@
+{
+  "exitCode": 1,
+  "stdout": {
+    "error": {
+      "categories": [
+        "LGN-001"
+      ],
+      "code": "HANDLED_EXCEPTION",
+      "requestMethod": "GET",
+      "requestUrl": "/release/data-templates/sobjects/Account/fields?credentialId=a11000000000005AAA via https://na.api.copado.com/json/v1/webhook/cicd-api?api_key=%3Cmasked%3E",
+      "statusCode": 502,
+      "name": "CicdGatewayError",
+      "message": "Login service error: HTTP 500. Request: GET /release/data-templates/sobjects/Account/fields?credentialId=a11000000000005AAA via https://na.api.copado.com/json/v1/webhook/cicd-api?api_key=%3Cmasked%3E"
+    },
+    "transactionId": "00000000-0000-7000-8000-000000000011"
+  }
+}

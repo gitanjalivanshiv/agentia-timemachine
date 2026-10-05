@@ -1,0 +1,37 @@
+{
+  "exitCode": 0,
+  "stdout": {
+    "result": [
+      {
+        "id": "a0U000000000001AAA",
+        "name": "TM Demo – Accounts",
+        "mainObject": "Account",
+        "status": "Inactive",
+        "createdBy": "Demo User",
+        "lastModified": "2026-10-04T17:34:54.000+0000",
+        "createdDate": "2026-10-04T17:34:54.000+0000",
+        "actionType": "none",
+        "active": false,
+        "sourceOrgId": "a11000000000002AAA",
+        "sourceOrgName": "Dev1-SFP",
+        "sourceEnvironmentId": "a0c000000000003AAA"
+      },
+      {
+        "id": "a0U000000000004AAA",
+        "name": "TM Demo - Accounts New",
+        "mainObject": "Account",
+        "status": "Inactive",
+        "createdBy": "Demo User",
+        "lastModified": "2026-10-04T18:20:21.000+0000",
+        "createdDate": "2026-10-04T18:01:04.000+0000",
+        "actionType": "none",
+        "active": false,
+        "sourceOrgId": "a11000000000002AAA",
+        "sourceOrgName": "Dev1-SFP",
+        "sourceEnvironmentId": "a0c000000000003AAA"
+      }
+    ],
+    "status": 0,
+    "transactionId": "00000000-0000-7000-8000-000000000001"
+  }
+}
