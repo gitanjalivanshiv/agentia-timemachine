@@ -220,8 +220,8 @@ Each command's syntax, JSON shape and error codes: [docs/agentia-commands.md](do
 - **Legacy templates** must be converted to v2 once (`convert-old`, a write you run yourself).
 - **Filter operators:** only `equals` (`"e"`) has been observed in real documents; the skill tells agents not to
   invent other operator codes.
-- While the plugin is linked for development, `agentia` prints an "ESM module" warning on stderr. It does not affect
-  `--json` output on stdout.
+- While the plugin is linked for development, `agentia` prints a "linked ESM module" warning on stderr. It does not
+  affect `--json` output on stdout; `export OCLIF_DISABLE_LINKED_ESM_WARNING=1` hides it.
 
 ## Development
 
